@@ -79,10 +79,11 @@ module.exports.getCurrentUser = asyncHandler(async (req, res, next) => {
 module.exports.updateUser = asyncHandler(async (req, res, next) => {
 	const { loggedUser } = req;
 	let isOldPasswordMatch = true;
-	const { name, oldPassword, password, bio } = req.body;
+	const { name, oldPassword, password, bio, email } = req.body;
 	let newUserData = {
 		name: name ?? loggedUser.name,
 		bio: bio ?? loggedUser.bio,
+		email: email ?? loggedUser.email,
 	};
 	const currentUserData = await User.findByPk(loggedUser.id);
 
